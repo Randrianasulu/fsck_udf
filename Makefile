@@ -23,12 +23,12 @@ CPPFLAGS+= -I${FSCK} -I${KUDF} -I${NEWFS} -I${NETBSDSRCDIR}/sys
 DPADD+=${LIBUTIL}
 LDADD+=-lutil -lprop
 
-CC=clang
+CC=gcc
 
 CWARNFLAGS.clang+=	-Wno-error=address-of-packed-member
 CWARNFLAGS.gcc+=	${GCC_NO_ADDR_OF_PACKED_MEMBER}
 
 prog:
-	${CC} -o $(PROG) $(SRCS) $(LDFLAGS) $(CFLAGS) -lm -I./udf
+	${CC} -o $(PROG) $(SRCS) $(LDFLAGS) $(CFLAGS) -D_GNU_SOURCES -std=c11 -g -O0 -lm -I./udf
 
 #.include <bsd.prog.mk>
