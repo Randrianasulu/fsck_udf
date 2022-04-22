@@ -29,6 +29,6 @@ CWARNFLAGS.clang+=	-Wno-error=address-of-packed-member
 CWARNFLAGS.gcc+=	${GCC_NO_ADDR_OF_PACKED_MEMBER}
 
 prog:
-	${CC} -o $(PROG) $(SRCS) $(LDFLAGS) $(CFLAGS) -D_GNU_SOURCES -std=c11 -g -O0 -lm -I./udf
+	${CC} -o $(PROG) $(SRCS) $(LDFLAGS) $(CFLAGS) -D_GNU_SOURCE -std=c11 -g -O0 -lm -I./udf
 
 #.include <bsd.prog.mk>
