@@ -3,7 +3,11 @@
 #ifndef _SYS_CDIO_H_
 #define _SYS_CDIO_H_
 
-#include  <endian.h>
+#if defined (__linux__)
+#include <endian.h>
+#else
+#include <sys/endian.h>
+#endif
 
 // #include <sys/ioccom.h>
 
