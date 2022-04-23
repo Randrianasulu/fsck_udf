@@ -371,13 +371,13 @@ udf_wipe_and_reallocate(union dscrptr *dscrptr, int vpart_num, uint32_t *l_adp)
 	/* create one short_ad or one long_ad */
 	if (ad_type == UDF_ICB_SHORT_ALLOC) {
 		short_adp = (struct short_ad *) bpos;
-		short_adp->len    = udf_rw64(inf_len);
+		short_adp->len    = udf_rw32(inf_len);
 		short_adp->lb_num = allocated.loc.lb_num;
 		l_ad = sizeof(struct short_ad);
 	} else {
 		long_adp  = (struct long_ad  *) bpos;
 		memcpy(long_adp, &allocated, sizeof(struct long_ad));
-		long_adp->len = udf_rw64(inf_len);
+		long_adp->len = udf_rw32(inf_len);
 		l_ad = sizeof(struct long_ad);
 	}
 	if (id == TAGID_FENTRY)
@@ -2656,7 +2656,7 @@ udf_process_vds(void) {
 			 * data file length
 			 */
 			context.part_size[log_part] =
-				udf_rw32(context.meta_file->inf_len) / context.sector_size;
+				udf_rw64(context.meta_file->inf_len) / context.sector_size;
 			break;
 		default:
 			break;
