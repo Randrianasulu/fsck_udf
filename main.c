@@ -2913,7 +2913,7 @@ udf_prepare_writing(void)
 	}
 
 	/* if we are not on sequential media, we're done */
-	if ((mmc_discinfo.mmc_cur & MMC_CAP_SEQUENTIAL) == 0)
+	if ((context.format_flags & FORMAT_VAT) == 0)
 		return 0;
 	assert(context.format_flags & FORMAT_VAT);
 
