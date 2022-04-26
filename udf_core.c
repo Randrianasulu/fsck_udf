@@ -1207,7 +1207,7 @@ udf_create_base_logical_dscr(void)
 
 	/* just one fsd for now */
 	lvd->lv_fsd_loc.len = udf_rw32(sector_size);
-	lvd->lv_fsd_loc.loc.part_num = udf_rw32(context.metadata_part);
+	lvd->lv_fsd_loc.loc.part_num = udf_rw16(context.metadata_part);
 	lvd->lv_fsd_loc.loc.lb_num   = udf_rw32(layout.fsd);
 
 	crclen  = sizeof(struct logvol_desc) - 1 - UDF_DESC_TAG_LENGTH;
