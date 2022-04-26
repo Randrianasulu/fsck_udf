@@ -1929,6 +1929,7 @@ udf_extract_vat(union dscrptr *dscr, uint8_t **vat_contents)
 		error = udf_extattr_search_intern(dscr, 2048, extstr, &offset, &a_l);
 		if (error) {
 			/* VAT LVExtension extended attribute missing */
+                        error = 0;
 			vat_writeout = 1;
 			goto ok;
 		}
@@ -1937,6 +1938,7 @@ udf_extract_vat(union dscrptr *dscr, uint8_t **vat_contents)
 		error = udf_impl_extattr_check(implext);
 		if (error) {
 			/* VAT LVExtension checksum failed */
+                        error = 0;
 			vat_writeout = 1;
 			goto ok;
 		}
@@ -1944,6 +1946,7 @@ udf_extract_vat(union dscrptr *dscr, uint8_t **vat_contents)
 		/* paranoia */
 		if (a_l != sizeof(*implext) -2 + udf_rw32(implext->iu_l) + sizeof(lvext)) {
 			/* VAT LVExtension size doesn't compute */
+                        error = 0;
 			vat_writeout = 1;
 			goto ok;
 		}
