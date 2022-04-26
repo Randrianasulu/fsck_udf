@@ -1144,7 +1144,7 @@ udf_process_file(union dscrptr *dscrptr, int vpart_num, uint8_t **resultp,
 					lb_num, vpart_num,
 					1);
 			/* TODO check for prev_entry? */
-			l_ad = ext->l_ad;
+			l_ad = udf_rw32(ext->l_ad);
 			bpos = ext->data;
 			if (ad_type == UDF_ICB_SHORT_ALLOC)
 				short_adp = (struct short_ad *) bpos;
