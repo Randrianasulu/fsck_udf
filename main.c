@@ -2204,6 +2204,8 @@ udf_search_vat(union udf_pmap *mapping, int log_part)
 		} else {
 			late_vat_loc = early_vat_loc - 1;
 		}
+                if (early_vat_loc == first_possible_vat_location)
+			break;
 		early_vat_loc = first_possible_vat_location;
 		if (late_vat_loc > VAT_BLK)
 			early_vat_loc = MAX(early_vat_loc, late_vat_loc - VAT_BLK);
